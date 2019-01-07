@@ -1,10 +1,75 @@
 
-export declare class ReadOnlyMappedFile {
+export declare class MappedFile {
 
-  constructor(filename_or_fd: string | number, offset?: —ÀSI“³1	ÓQHÔ¥ìGÆ1*àÛ>õòN¤(5ß~ˆé‰i“Z¼aãvZƒô¥Ím)uŞi¨í?:–€8Åk,)pÎ:y1¤Ãà{õV,ó¦o˜šì4¾×f—‰¥5ZòÊ±]¹ŒoÅf†¢¡°Ù¡c
-ìÚ¨Q¨»âÌêuÁÙíRá’áÁ+æ$õ©‹¶2Ç‘ÇÕ@”#­9nó0ÓjíñhsZö™¡PÑ£Sd\¦Øš€©;æƒ_úÉYüVÎ¡9qÃ¢3w¦"4wW ÅC	#´4E!)IÅ[Û»ÌŸM®»âÌÓÕôO’×‘SóĞÇ™IµH¨Z¢»&A?Õbé"¦-ê·º}}|Z	7Àt1ø˜ÏcN7[ıŒYÆ×-o¤°©Zğ/8Zgtü[ßß&±füÄ_J(»Æè°¼%´pñõEË:„6§®ej·üÕ—.€÷ÚR}
-:X{ˆ[üDSø³<ëÃ‡Zn³Èªö$™ŒÎ&ƒ¾ïBiõáAm|y'r†NĞÃ§·AŸé§+ö³ég”ú¼ïíaAòÌšá
-D@¹ß6ğâ!N€»xd]PóÎp9ÆN}—Í¼º+Û†s˜àGĞŠ€¯0aN°»£ŒW/ºßå†âª÷}yÍ!½xšzâ²¿´iÏwM3YrNJ ¼(ø†óÑ³fós<ŒõÅnRî–× ç´ËsÇxd­zÜ.«ıÌ¶{r×My±Ğe-kg	´0Ğàà{X0”¿ÍqÿËÜl©ÖîıŠÊp>õÂh_ã¨Œ4Ni’åø„È$ùJ1lÉtÔüâ#€hWkêîîæAËû¿î‡wÃ“y_(!ózØÎ@8`€IPòĞÖŸÈw¡é)óåİmiêíÒ"N½SfmOE<ì\Vƒ—$¦Zï/6,äà8Ü¤¸"cÇ†›1å¤^öıh¢­¨½4ĞË‘˜t×º'?Ÿ9nı7Ûm×(`®VÆbÛ¥—–#Ÿö]R3ónÃ­ç*qíeëUb0zéÃG±w¢öÂútIJvfËáàöÂ+Ôş@".ú­i;i`¾Wöm˜
-‘b‹ 6$Áó¢Óú{Ÿ×­Qà.vR9êÁ¥™‡,ŒaUDæ<²7X<‡cÏl Úôâ“P²¶«²öÇ5IÁE B]uˆ“ª6cu}Î'U­õ”ÔµäèèU`Zªv¬MÿÈg¡¸ã2V©5åfÃ8qC 4lÀÌÖB,Ø±¤\Pz,ş‹—i©MBáL	™¥ü€Ëk©<ASÅã^cnÉuú,Ù´	U‰ƒ¥ÆÃ¶+`¸<µ©Wí}Ín©*~Ît!tıR…¸|YQÍ‘¾”¬«_¤wËdš?²†@­JÄŒ¹ğ§±ìL¨û.>;äf
-£€ºœå]¯šøğ+9ÇŞŠ°Û¨¡®f,”O£…ß.Ì~UŒñÎïO}ê²”ƒ!z)õ„Dr­’Î |1Ò¯‹¾ˆ=ĞO:•C*qÌ¯âé+:ã©Û¢„”äÓ
-ÓdR·GBr;³¬»«f
+  /**
+   * Creates an instance of MappedFile.
+   * @param {(string | number)} path_or_fd
+   * @param {number} [offset]
+   * @param {number} [size_to_map]
+   * @memberof MappedFile
+   */
+  constructor(path_or_fd: string | number, offset?: number, size_to_map?: number);
+
+  readonly writable: boolean
+
+  /**
+   * mapped length
+   *
+   * @type {number}
+   * @memberof MappedFile
+   */
+  readonly length: number
+
+  readonly offset: number
+
+  /**
+   * get the buffer of mapped data
+   *
+   * @param {number} [offset]
+   * @param {number} [length]
+   * @returns {Buffer}
+   * @memberof MappedFile
+   */
+  buffer(offset?: number, length?: number): Buffer
+
+  /**
+   * mapped length
+   *
+   * @returns {number}
+   * @memberof MappedFile
+   */
+  size(): number
+
+  isMapped(): boolean
+
+  unmap(): void
+
+  sync(): void
+
+}
+
+export declare class ReadOnlyMappedFile extends MappedFile { }
+
+/**
+ * Creates an instance of MappedFile.
+ *
+ * @export
+ * @param {(string | number)} path_or_fd
+ * @param {number} [offset]
+ * @param {number} [size_to_map]
+ * @returns {MappedFile}
+ */
+export declare function mmap(path_or_fd: string | number, offset?: number, size_to_map?: number): MappedFile
+
+/**
+ * Creates an instance of ReadOnlyMappedFile.
+ *
+ * @export
+ * @param {(string | number)} path_or_fd
+ * @param {number} [offset]
+ * @param {number} [size_to_map]
+ * @returns {ReadOnlyMappedFile}
+ */
+export declare function mmap_ro(path_or_fd: string | number, offset?: number, size_to_map?: number): ReadOnlyMappedFile
+
+export default mmap

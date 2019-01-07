@@ -1,7 +1,22 @@
 {
-  "name": "@mooncake/mmap",
-  "version": "0.0.6",
-  "description": "",
+  "name": "mmap-mio",
+  "version": "0.0.3",
+  "description": "A cross-platform memory-mapping library for nodejs(& TypeScript)",
+  "homepage": "https://github.com/xujif/node_mmap_mio",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xujif/node_mmap_mio"
+  },
+  "keywords": [
+    "mmap",
+    "memory-mapping",
+    "C++",
+    "N-API",
+    "mio",
+    "cross platform",
+    "buffer",
+    "Typescript"
+  ],
   "main": "binding.js",
   "types": "typing.d.ts",
   "scripts": {
@@ -9,8 +24,8 @@
     "build": "node-gyp build",
     "rebuild": "node-gyp rebuild"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "i@xujif.com",
+  "license": "MIT",
   "gypfile": true,
   "dependencies": {
     "bindings": "^1.3.1",

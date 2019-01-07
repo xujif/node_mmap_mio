@@ -127,12 +127,15 @@ void MappedFile<mio::access_mode::read>::sync(const Napi::CallbackInfo &info)
 
 using RW = MappedFile<mio::access_mode::write>;
 using RO = MappedFile<mio::access_mode::read>;
-template <>
-Napi::FunctionReference RW::constructor;
-template <>
-Napi::FunctionReference RO::constructor;
 
-inline void MioInit(Napi::Env env, Napi::Object exports)
+template <>
+Napi::FunctionReference RW::constructor = Napi::FunctionReference();
+
+template <>
+Napi::FunctionReference RO::constructor = Napi::FunctionReference();
+
+inline void
+MioInit(Napi::Env env, Napi::Object exports)
 {
     Napi::Function rw_constructor = RW::DefineClass(env, "MappedFile", {
                                                                            RW::InstanceAccessor("writable", &RW::writable, nullptr),
@@ -144,6 +147,7 @@ inline void MioInit(Napi::Env env, Napi::Object exports)
                                                                            RW::InstanceMethod("unmap", &RW::unmap),
                                                                            RW::InstanceMethod("sync", &RW::sync),
                                                                        });
+
     RW::constructor = Napi::Persistent(rw_constructor);
     RW::constructor.SuppressDestruct();
     exports.Set("MappedFile", rw_constructor);
