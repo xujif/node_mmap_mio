@@ -1,6 +1,6 @@
 {
   "name": "mmap-mio",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "A cross-platform memory-mapping library for nodejs(& TypeScript)",
   "homepage": "https://github.com/xujif/node_mmap_mio",
   "repository": {
