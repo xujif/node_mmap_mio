@@ -22,7 +22,7 @@ m.unmap() // unmap the file. Note: do not access the buffer after unmapped;
 
 ```
 
-### api
+### Api
 ```TypeScript
 /**
  * Creates an instance of MappedFile.
